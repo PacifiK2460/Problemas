@@ -1,5 +1,5 @@
 #include<iostream>
-#include<algorithm>
+#include<vector>
 using namespace std;
 
 int main()
@@ -45,7 +45,8 @@ int main()
     }
     
 
-    bool patio[999][999];
+    vector<vector<bool> > patio( 10000 , vector<bool> (10000, 0));
+    
     
     for (int i = cords[1]; i <= cords[3]-1; i++)
     {
