@@ -5,6 +5,7 @@ int main()
 {
     int n;
     cin>>n;
+    
 
     bool primo = true;
 
