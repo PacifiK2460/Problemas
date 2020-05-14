@@ -1,86 +1,121 @@
 #include<iostream>
-#include<stack>
 #include<string>
-#include<algorithm>
-
+#include<vector>
 using namespace std;
-
-stack<string> inicio;
-stack<string> fin;
-
-void PrintStackInicio()
-{
-    if (inicio.empty())
-    {
-        return;
-    }
-
-    string x = inicio.top();
-    inicio.pop();
-    PrintStackInicio();
-    cout<<x;
-    inicio.push(x);
-}
-void PrintStackFin()
-{
-    if (fin.empty())
-    {
-        return;
-    }
-
-    string x = fin.top();
-    fin.pop();
-    PrintStackFin();
-    cout<<x;
-    fin.push(x);
-}
 
 int main()
 {
-    string texto;
+    ios_base::sync_with_stdio(false);
 
-    size_t l[3];
-    string e = " ";
+    string txt;
 
-    cout<<"0\n";
-    getline(cin,texto);
-    cout<<"Loop 0:"<<texto.length()<<"\n";
-    for (int i = 0; i < texto.length(); i++)
+    getline(cin,txt);
+
+    vector <string> inicio;
+    vector <string> fin;
+    vector <string> medio;
+
+    long long g;
+
+    for (long long i = 0; i < txt.size(); i++)
     {
-        cout<<i<<endl;
-        cin.get();
-        if (texto[i] == '[' && (texto[i+1] != '[' && texto[i+1] != ']'))
+        //cout<<"analizando: "<<txt[i]<<endl;
+        if (txt[i] == '[')
         {
-            cout<<texto[i]<<"Cumple con: 2\n";
-            //l = ( <= texto.find('[',i+1) ? texto.find(']',i+1) : texto.find('[',i+1));   
-            l[0] = texto.find(']',i+1);
-            l[1] = texto.find('[',i+1);
-            l[2] = texto.find(']',i+1);
-
-            sort(l[0],l[2]);
-
-            cout<<" l(i) = "<<l<<endl;
-            inicio.push(texto.substr(i+1,l[0] - i));
-            inicio.push(e);
-            i = l[0];
-        }else if(texto[i] == ']' && (texto[i+1] != '[' && texto[i+1] != ']'))
+            //cout<<txt[i]<<" ("<<i<<") {Inicio}\n";
+            g = i+1;
+            for (i; i < txt.size(); i++)
+            {
+                if (txt[i+1] == ']' or txt[i+1] == '[' or i == txt.size()-1)
+                {
+                    //cout<<"A usar de: "<<g<<" ~ "<<i;
+                    if (txt.size() - i != 1)
+                    {
+                        //cout<<"Agregando1: "<<txt.substr(g,(i-g) +1)<<endl;
+                        inicio.push_back(txt.substr(g,(i-g) +1));
+                    }
+                    else if(txt.size() - i == 1)
+                    {//cout<<"Agregando2: "<<txt.substr(g,(txt.size()-g))<<endl;
+                        inicio.push_back(txt.substr(g,(txt.size()-g)));
+                    }                    
+                    //cout<<" | "<<inicio.top()<<endl;
+                    break;
+                }
+            }
+        }
+        else if (txt[i] == ']')
         {
-            cout<<texto[i]<<"Cumple con: 3\n";
-            //l = (texto.find(']',i+1) <= texto.find('[',i+1) ? texto.find(']',i+1) : texto.find('[',i+1));
-            l[0] = texto.find(']',i+1);
-            l[1] = texto.find('[',i+1);
-            l[2] = texto.find(']',i+1);
-            
-            sort(l[0],l[2]);
-
-            cout<<" l(i) = "<<l<<endl;
-            fin.push(texto.substr(i+1,l[0] - 1));
-            fin.push(e);
-            i = l[0];
+            //cout<<txt[i]<<" ("<<i<<") {Fin}\n";
+            g = i+1;
+            for (i; i < txt.size(); i++)
+            {
+                if (txt[i+1] == ']' or txt[i+1] == '[' or i == txt.size()-1)
+                {
+                    //cout<<"A usar de: "<<g<<" ~ "<<i;
+                    if (txt.size() - i != 1)
+                    {
+                        //cout<<"Adding1: "<<txt.substr(g,(i-g) +1)<<endl;
+                        fin.push_back(txt.substr(g,(i-g) +1));
+                    }
+                    else if(txt.size() - i == 1)
+                    {
+                        //cout<<"Adding2: "<<txt.substr(g,(txt.size()-g))<<endl; 
+                        fin.push_back(txt.substr(g,(txt.size()-g)));
+                    }  
+                    //cout<<" | "<<fin.back()<<endl;
+                    break;
+                }
+            }
         }
         else
         {
-            cout<<texto[i]<<" No cumple ninguna condicion\n";
+            //cout<<txt[i]<<" ("<<i<<") {Fin}\n";
+            g = i;
+            for (i; i < txt.size(); i++)
+            {
+                if (txt[i+1] == ']' or txt[i+1] == '[' or i == txt.size()-1)
+                {
+                    //cout<<"A usar de: "<<g<<" ~ "<<i;
+                    if (txt.size() - i != 1)
+                    {
+                        medio.push_back(txt.substr(g,(i-g) +1));
+                    }
+                    else if(txt.size() - i == 1)
+                    {
+                        medio.push_back(txt.substr(g,(txt.size()-g)));
+                    }  
+                    //cout<<" | "<<fin.back()<<endl;
+                    break;
+                }
+            }
         }
+        
+    }
+
+    if (!inicio.empty())
+    {
+        for (long long i = inicio.size()-1; i >= 0; i--)
+        {
+            cout<<inicio.at(i);
+        }
+
+    }
+    if (!medio.empty())
+    {    
+
+        for (long long i = 0; i < medio.size(); i++)
+        {
+            cout<<medio.at(i);
+        }
+    
+    }
+    if (!fin.empty())
+    {    
+
+        for (long long i = 0; i < fin.size(); i++)
+        {
+            cout<<fin.at(i);
+        }
+    
     }
 }
