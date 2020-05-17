@@ -13,7 +13,6 @@ int sumar(string a, int b, int l, int t)
     {
         cout<<t;
     }
-    
 }
 
 int main()
