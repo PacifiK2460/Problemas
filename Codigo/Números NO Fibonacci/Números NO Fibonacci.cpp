@@ -1,43 +1,22 @@
-#include <iostream>    
+#include<iostream>
+#include<vector>
+#include<algorithm>
 using namespace std;
 
 int main()
-{   
-
-    long numeros[50];
-
-    int n,f=0,s=1,sig,c;
+{
+    vector <int> fib = {1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657,46368,75025,121393,196418,317811};
+    std::vector<int>::iterator it;
+    int n;
     cin>>n;
-    n = n + 1;
-    for (c = 1; c < n; c++)
+    for (int i = 3; i < n; i++)
     {
-        if (c <= 1)
+        it = find(fib.begin(),fib.end(),i);
+        if (it == fib.end())
         {
-            sig = c;
+            cout<<i<<" ";
         }
-        else
-        {
-            sig = f + s;
-            f = s;
-            s = sig;
-        }
-        numeros[c] = sig;
     }
-
-    int i,j;
-
-    for ( i = 4; i < n; i++)
-    {
-        for ( j = 4; j < n; j++)
-        {
-            if (i != numeros[j])
-            {
-                cout<<i<<" ";
-                j =n;
-            }
-            
-        }
-        j=4;
-    }
-
 }
+
+//int fib[] = {1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657,46368,75025,121393,196418,317811};
