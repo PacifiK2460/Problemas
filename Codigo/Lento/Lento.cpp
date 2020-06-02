@@ -22,25 +22,25 @@ int main()
     int h = 0;
 
    // cout<<"Se va a repetir por los "<<f.size()<<" numeros\n";
-    for (int i = 0; i < f.size(); i++)
+    for (int i = 0; i < f.size() / 2; i++)
     {
         //cin.get();
         g = f.at(i);
-        cout<<"Numero base = "<<f.at(i)<<" ("<<i<<")"<<endl;
+        //cout<<"Numero base = "<<f.at(i)<<" ("<<i<<")"<<endl;
         for (int j = i; j < (f.size() - i -1); j++)
         {
            // cin.get();
-            cout<<"     "<<j<<" | Se van a hacer "<<(f.size() - i - 2)<<" Tecnicas de sumas ("<<j<<")\n";
+            //cout<<"     "<<j<<" | Se van a hacer "<<(f.size() - i - 2)<<" Tecnicas de sumas ("<<j<<")\n";
             for (int k = i+1; k < f.size() - d; k++)
             {
               //  cin.get();
-                cout<<"         "<<k<<" | Esta tecnica abarcara "<<f.size() - d -1<<" sumas\n";//
+              //  cout<<"         "<<k<<" | Esta tecnica abarcara "<<f.size() - d -1<<" sumas\n";//
                 for (int l = k; l <= k + d; l++)
                 {
                  //   cin.get();
-                   cout<<"              "<<l<<" | Sumando "<<f.at(l);
+                //   cout<<"              "<<l<<" | Sumando "<<f.at(l);
                     g += f.at(l);
-                   cout<<", siendo un total de "<<g<<endl;
+                 //  cout<<", siendo un total de "<<g<<endl;
                 }
                 
                 if (g % 2 == 1 && g >= h)
