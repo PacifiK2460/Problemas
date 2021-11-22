@@ -6,12 +6,10 @@ int b(int n)
     if (n >= 2)
     {
         b(n/2);
-        cout<<n%2<<" ";
+        cout<<n%2;
     }
     else
-    {
-        cout<<n<<" ";
-    }
+        cout<<1;
 }
 
 int main()
