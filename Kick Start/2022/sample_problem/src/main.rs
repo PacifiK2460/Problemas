@@ -10,7 +10,7 @@ fn main(){
     let TEST_CASES: u32 = TEST_CASES.parse().unwrap();
 
     for TEST_CASE in 1..TEST_CASES {
-        let mut RESULT: u32 = 0;
+        let RESULT: u32 = 0;
 
         println!("Case #{}: {}", TEST_CASE, RESULT)
     }
